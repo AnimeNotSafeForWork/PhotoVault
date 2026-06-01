@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔒 Private Image Vault - NSFW Storage</title>
+    <title>🌸 Shoujo Image Vault • Kawaii Private Storage 🌸</title>
     <style>
         * {
             margin: 0;
@@ -13,159 +13,202 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
-            color: #e0e0e0;
+            font-family: 'Segoe UI', 'Quicksand', 'Comic Neue', 'Poppins', 'Yu Gothic', 'Meiryo', 'Candara', sans-serif;
+            background: linear-gradient(135deg, #ffe9f4 0%, #ffd9e8 50%, #ffe0f0 100%);
+            color: #b14a6b;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+        }
+
+        /* Cute floating hearts background */
+        body::before {
+            content: "🌸✨💖🌸✨💖🌸✨💖";
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 24px;
+            opacity: 0.1;
+            pointer-events: none;
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 0;
         }
 
         .container {
             max-width: 1600px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         /* Header Styles */
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ffb7d2 0%, #ff8eb5 50%, #ff6b9d 100%);
             padding: 30px;
-            border-radius: 20px;
+            border-radius: 60px 60px 40px 40px;
             margin-bottom: 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: slideDown 0.5s ease;
+            box-shadow: 0 15px 35px rgba(255, 107, 157, 0.3);
+            animation: slideDown 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 3px solid #fff9;
         }
 
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 0 #ffd9e8;
+            color: white;
         }
 
         .header p {
-            opacity: 0.9;
+            opacity: 0.95;
             font-size: 1.1em;
+            color: #fff;
+            font-weight: 500;
         }
 
         @keyframes slideDown {
             from {
-                transform: translateY(-50px);
+                transform: translateY(-80px) rotate(-5deg);
                 opacity: 0;
             }
             to {
-                transform: translateY(0);
+                transform: translateY(0) rotate(0);
                 opacity: 1;
             }
         }
 
         /* Warning Banner */
         .warning {
-            background: linear-gradient(135deg, #ff6b6b, #c92a2a);
+            background: linear-gradient(135deg, #ff9eb5, #ff6b8b);
             color: white;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 50px;
             margin-bottom: 20px;
             text-align: center;
             font-weight: bold;
             animation: pulse 2s infinite;
-            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+            box-shadow: 0 5px 20px rgba(255, 107, 139, 0.4);
+            border: 2px solid #fff9;
+            backdrop-filter: blur(5px);
         }
 
         @keyframes pulse {
             0%, 100% {
-                opacity: 1;
+                transform: scale(1);
+                opacity: 0.9;
             }
             50% {
-                opacity: 0.8;
+                transform: scale(1.02);
+                opacity: 1;
             }
         }
 
         /* Password Section */
         .password-section {
-            background: rgba(45, 45, 68, 0.95);
+            background: rgba(255, 230, 240, 0.95);
             backdrop-filter: blur(10px);
             padding: 40px;
-            border-radius: 20px;
-            margin: 50px auto;
-            max-width: 500px;
+            border-radius: 50px;
+            margin: 60px auto;
+            max-width: 550px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border: 1px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 25px 50px rgba(255, 107, 157, 0.3);
+            border: 3px solid #ffb7d2;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         .password-section h3 {
-            font-size: 1.8em;
+            font-size: 2em;
             margin-bottom: 20px;
-            color: #667eea;
+            color: #ff6b9d;
+            font-weight: bold;
         }
 
         .password-section input {
-            width: 80%;
-            padding: 15px;
+            width: 85%;
+            padding: 15px 20px;
             margin: 15px 0;
-            background: #1e1e2e;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-            color: white;
+            background: white;
+            border: 3px solid #ffb7d2;
+            border-radius: 50px;
+            color: #b14a6b;
             font-size: 1.1em;
             transition: all 0.3s;
+            font-family: monospace;
+            text-align: center;
         }
 
         .password-section input:focus {
             outline: none;
-            border-color: #764ba2;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+            border-color: #ff6b9d;
+            box-shadow: 0 0 20px rgba(255, 107, 157, 0.4);
+            transform: scale(1.02);
         }
 
         .password-section button {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #ffb7d2, #ff6b9d);
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 10px;
-            font-size: 1.1em;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-size: 1.2em;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
         }
 
         .password-section button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6);
         }
 
         /* Controls Bar */
         .controls {
-            background: rgba(45, 45, 68, 0.95);
+            background: rgba(255, 245, 250, 0.95);
             backdrop-filter: blur(10px);
             padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
+            border-radius: 60px;
+            margin-bottom: 25px;
             display: flex;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(102, 126, 234, 0.2);
+            border: 2px solid #ffc0d4;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
         .controls button {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #ffb7d2, #ff8eb5);
             color: white;
             border: none;
             padding: 12px 24px;
-            border-radius: 8px;
+            border-radius: 40px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.95em;
             font-weight: bold;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
         }
 
         .controls button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+            background: linear-gradient(135deg, #ffc0d4, #ff9eb5);
         }
 
         .controls button:active {
@@ -173,20 +216,21 @@
         }
 
         .file-input-label {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: linear-gradient(135deg, #a8e6cf, #7ec8a0);
             padding: 12px 24px;
-            border-radius: 8px;
+            border-radius: 40px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             font-weight: bold;
             transition: all 0.3s;
+            color: white;
         }
 
         .file-input-label:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(126, 200, 160, 0.4);
         }
 
         input[type="file"] {
@@ -199,13 +243,13 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
             margin-top: 20px;
-            animation: fadeIn 0.5s ease;
+            animation: fadeInUp 0.6s ease;
         }
 
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -213,43 +257,61 @@
             }
         }
 
-        /* Image Card */
+        /* Image Card - Girly Theme */
         .image-card {
-            background: rgba(45, 45, 68, 0.9);
+            background: rgba(255, 250, 245, 0.95);
             backdrop-filter: blur(5px);
-            border-radius: 15px;
+            border-radius: 30px;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             position: relative;
-            border: 1px solid rgba(102, 126, 234, 0.2);
+            border: 3px solid #ffd4e4;
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.15);
+        }
+
+        .image-card::before {
+            content: "💖";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 2;
+            text-shadow: 0 0 5px white;
+        }
+
+        .image-card:hover::before {
+            opacity: 1;
         }
 
         .image-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 35px rgba(255, 107, 157, 0.3);
+            border-color: #ff9eb5;
         }
 
         .image-card img {
             width: 100%;
             height: 250px;
             object-fit: cover;
-            transition: transform 0.3s;
+            transition: transform 0.4s;
         }
 
         .image-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .image-info {
             padding: 15px;
-            background: rgba(30, 30, 46, 0.95);
+            background: linear-gradient(135deg, #fff5f8, #ffeef4);
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.9em;
             gap: 10px;
+            border-top: 2px solid #ffd4e4;
         }
 
         .filename {
@@ -257,28 +319,31 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            color: #a0a0c0;
+            color: #b14a6b;
+            font-weight: 500;
         }
 
         .file-size {
-            color: #667eea;
+            color: #ff8eb5;
             font-size: 0.85em;
             font-weight: bold;
         }
 
         .delete-btn {
-            background: #ff4757;
-            color: white;
+            background: #ffb7d2;
+            color: #b14a6b;
             border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
+            padding: 6px 14px;
+            border-radius: 50px;
             cursor: pointer;
             transition: all 0.2s;
             font-size: 0.85em;
+            font-weight: bold;
         }
 
         .delete-btn:hover {
-            background: #ff6b81;
+            background: #ff6b9d;
+            color: white;
             transform: scale(1.05);
         }
 
@@ -291,32 +356,42 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.95);
+            background: rgba(255, 200, 220, 0.98);
             align-items: center;
             justify-content: center;
             animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(8px);
         }
 
         .modal img {
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            border-radius: 30px;
+            box-shadow: 0 0 50px rgba(255, 107, 157, 0.5);
+            border: 5px solid white;
         }
 
         .modal-close {
             position: absolute;
             top: 30px;
             right: 50px;
-            color: white;
+            color: #ff6b9d;
             font-size: 50px;
             cursor: pointer;
             transition: transform 0.2s;
+            background: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .modal-close:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(90deg);
         }
 
         /* Lock Status Indicator */
@@ -324,41 +399,44 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #2d2d44;
-            padding: 12px 20px;
-            border-radius: 30px;
+            background: linear-gradient(135deg, #ffb7d2, #ff8eb5);
+            padding: 12px 22px;
+            border-radius: 50px;
             font-size: 14px;
             font-weight: bold;
             z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
             backdrop-filter: blur(5px);
+            color: white;
         }
 
         /* Stats Bar */
         .stats {
-            background: rgba(45, 45, 68, 0.7);
-            padding: 10px 20px;
-            border-radius: 10px;
+            background: rgba(255, 245, 250, 0.9);
+            padding: 12px 25px;
+            border-radius: 50px;
             margin-bottom: 20px;
             text-align: center;
-            font-size: 0.9em;
-            color: #a0a0c0;
+            font-size: 0.95em;
+            color: #b14a6b;
+            border: 2px solid #ffc0d4;
+            font-weight: 500;
         }
 
-        /* Loading Spinner */
+        /* Loading Spinner - Kawaii */
         .loading {
             text-align: center;
             padding: 50px;
             font-size: 1.2em;
-            color: #667eea;
+            color: #ff8eb5;
         }
 
         .spinner {
-            border: 3px solid rgba(102, 126, 234, 0.3);
-            border-top: 3px solid #667eea;
+            border: 4px solid #ffe0f0;
+            border-top: 4px solid #ff8eb5;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
             margin: 0 auto 15px;
         }
@@ -368,7 +446,49 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Responsive Design */
+        /* Progress Bar for Download */
+        .progress-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 200, 220, 0.95);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-card {
+            background: white;
+            padding: 40px;
+            border-radius: 50px;
+            text-align: center;
+            min-width: 350px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 3px solid #ffb7d2;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #ffe0f0;
+            border-radius: 50px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffb7d2, #ff6b9d);
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 50px;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -387,62 +507,65 @@
                 height: 150px;
             }
             
-            .controls button {
+            .controls button, .file-input-label {
                 padding: 8px 16px;
-                font-size: 0.9em;
+                font-size: 0.85em;
             }
             
             .modal-close {
                 top: 20px;
                 right: 20px;
+                width: 45px;
+                height: 45px;
                 font-size: 35px;
             }
         }
 
-        /* Scrollbar Styling */
+        /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
+            width: 12px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #1a1a2e;
+            background: #ffe0f0;
+            border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #667eea;
-            border-radius: 5px;
+            background: #ffb7d2;
+            border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #764ba2;
+            background: #ff8eb5;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🔒 Private Image Vault</h1>
-            <p>Your Secure NSFW Image Storage | 100% Local | Zero Cloud Sync</p>
+            <h1>🌸 Shoujo Image Vault 💖</h1>
+            <p>✨ Your Kawaii & Private NSFW Storage • 100% Local • No Leaks Ever ✨</p>
         </div>
 
         <div class="warning">
-            ⚠️ NSFW CONTENT - PASSWORD PROTECTED | ALL DATA STAYS ON YOUR DEVICE ⚠️
+            💕 NSFW CONTENT • PASSWORD PROTECTED • ALL DATA STAYS ON YOUR DEVICE 💕
         </div>
 
         <!-- Password Protection -->
         <div class="password-section" id="passwordSection">
-            <h3>🔐 SECURITY CHECK</h3>
-            <input type="password" id="passwordInput" placeholder="Enter Master Password" autocomplete="off">
+            <h3>🔐 Enter Secret Code 💌</h3>
+            <input type="password" id="passwordInput" placeholder="✨ your password ✨" autocomplete="off">
             <br>
-            <button onclick="unlockVault()">Unlock Vault</button>
-            <p style="margin-top: 15px; font-size: 0.85em; opacity: 0.7;">🔒 Your images are encrypted and stored locally</p>
+            <button onclick="unlockVault()">🌸 Unlock My Vault 🌸</button>
+            <p style="margin-top: 15px; font-size: 0.85em; opacity: 0.7;">💖 Your precious memories are safe here 💖</p>
         </div>
 
-        <!-- Main Content (Hidden until unlock) -->
+        <!-- Main Content -->
         <div id="mainContent" style="display: none;">
             <div class="controls">
                 <button onclick="scanImagesFolder()" id="scanBtn">📂 Scan /images Folder</button>
+                <button onclick="downloadAllAsZip()">📦 Download All as ZIP</button>
                 <label class="file-input-label">
                     📤 Upload Images
                     <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/gif,image/webp,image/bmp,image/jpg">
@@ -450,37 +573,38 @@
                 <button onclick="selectFolder()">📁 Select Folder</button>
                 <button onclick="refreshGallery()">🔄 Refresh</button>
                 <button onclick="lockVault()">🔒 Lock Vault</button>
-                <button onclick="clearAllImages()" style="background: linear-gradient(135deg, #ff4757, #c92a2a);">⚠️ Delete All</button>
+                <button onclick="clearAllImages()" style="background: linear-gradient(135deg, #ff9eb5, #ff6b8b);">⚠️ Delete All</button>
             </div>
             
             <div class="stats" id="stats">
-                Loading images...
+                💕 Loading your precious collection... 💕
             </div>
             
             <div id="gallery" class="gallery">
                 <div class="loading">
                     <div class="spinner"></div>
-                    Loading your secure gallery...
+                    🌸 Loading your kawaii gallery... 🌸
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Fullscreen Modal -->
+    <!-- Modal -->
     <div id="modal" class="modal" onclick="closeModal()">
-        <span class="modal-close">&times;</span>
+        <span class="modal-close">✖</span>
         <img id="modalImage" alt="Full size preview">
     </div>
 
-    <!-- Lock Status Indicator -->
+    <!-- Lock Status -->
     <div class="lock-status" id="lockStatus">
-        🔒 LOCKED
+        🔒 LOCKED 💔
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
     <script>
         // ========== CONFIGURATION ==========
-        // CHANGE THIS PASSWORD TO SOMETHING SECURE!
-        const MASTER_PASSWORD = "qwerty@112";
+        // CHANGE THIS PASSWORD TO YOUR SECRET ONE!
+        const MASTER_PASSWORD = "shoujo123"; // Change this!
         
         // ========== GLOBAL VARIABLES ==========
         let isUnlocked = false;
@@ -490,7 +614,7 @@
         // ========== INITIALIZE INDEXEDDB ==========
         function initDB() {
             return new Promise((resolve, reject) => {
-                const request = indexedDB.open('PrivateImageVault', 2);
+                const request = indexedDB.open('ShoujoImageVault', 2);
                 
                 request.onerror = () => reject(request.error);
                 request.onsuccess = () => {
@@ -512,26 +636,24 @@
         // ========== SCAN /IMAGES FOLDER ==========
         async function scanImagesFolder() {
             if (!isUnlocked) {
-                alert("Please unlock the vault first!");
+                alert("💕 Please unlock the vault first! 💕");
                 return;
             }
             
             const scanBtn = document.getElementById('scanBtn');
             const originalText = scanBtn.innerHTML;
-            scanBtn.innerHTML = '⏳ Scanning...';
+            scanBtn.innerHTML = '⏳ Scanning... ✨';
             scanBtn.disabled = true;
             
             try {
-                // Try to fetch directory listing from /images/
                 const response = await fetch('/images/');
                 const html = await response.text();
                 
-                // Parse image files from directory listing
                 const imageExtensions = /\.(jpg|jpeg|png|gif|webp|bmp|svg|ico)$/i;
                 const imgMatches = html.match(/href="([^"]+\.(jpg|jpeg|png|gif|webp|bmp|svg|ico))"/gi);
                 
-                if (!imgMatches) {
-                    alert("No images found in /images folder!\n\nMake sure:\n1. You're running a local server (python -m http.server 8000)\n2. The /images folder exists\n3. Images are in the folder");
+                if (!imgMatches || imgMatches.length === 0) {
+                    alert("💔 No images found in /images folder!\n\n💡 Tips:\n1. Run a local server: python -m http.server 8000\n2. Make sure '/images' folder exists in the same directory\n3. Put your images inside the folder\n\n✨ Alternatively, use 'Select Folder' to upload directly!");
                     return;
                 }
                 
@@ -552,21 +674,90 @@
                 }
                 
                 await refreshGallery();
-                alert(`✅ Successfully imported ${imported} images from /images folder!`);
+                alert(`🎉 Successfully imported ${imported} images from /images folder! 🎉\n\nYour precious collection is now safe! 💕`);
                 
             } catch (error) {
                 console.error("Scan error:", error);
-                alert(`❌ Cannot scan /images folder automatically.\n\nTo use this feature:\n1. Run a local server in this directory:\n   python -m http.server 8000\n2. Open http://localhost:8000\n3. Make sure /images folder exists\n\nAlternatively, use "Select Folder" or drag & drop images.`);
+                alert(`💔 Cannot scan /images folder automatically.\n\n💡 To fix this:\n\n1️⃣ Run a local server in this folder:\n   python -m http.server 8000\n\n2️⃣ Open http://localhost:8000\n\n3️⃣ Make sure you have an 'images' folder with your pictures\n\n✨ Or just use "Select Folder" button to upload directly! ✨`);
             } finally {
                 scanBtn.innerHTML = originalText;
                 scanBtn.disabled = false;
             }
         }
         
+        // ========== DOWNLOAD ALL AS ZIP ==========
+        async function downloadAllAsZip() {
+            if (!isUnlocked) {
+                alert("💕 Please unlock the vault first! 💕");
+                return;
+            }
+            
+            const images = await getAllImages();
+            if (images.length === 0) {
+                alert("💔 No images to download! Upload some first 💔");
+                return;
+            }
+            
+            // Show progress overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'progress-overlay';
+            overlay.innerHTML = `
+                <div class="progress-card">
+                    <h3>📦 Creating your ZIP file... 💕</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p id="progressText">Preparing ${images.length} images...</p>
+                    <div>🌸 Please wait patiently 🌸</div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+            
+            const zip = new JSZip();
+            let processed = 0;
+            
+            for (let img of images) {
+                // Extract base64 data
+                const base64Data = img.data.split(',')[1];
+                const binaryData = atob(base64Data);
+                const array = new Uint8Array(binaryData.length);
+                for (let i = 0; i < binaryData.length; i++) {
+                    array[i] = binaryData.charCodeAt(i);
+                }
+                
+                // Get extension
+                const ext = img.filename.split('.').pop();
+                const safeName = img.filename.replace(/[^a-zA-Z0-9.-]/g, '_');
+                zip.file(safeName, array);
+                
+                processed++;
+                const percent = (processed / images.length) * 100;
+                document.querySelector('.progress-fill').style.width = percent + '%';
+                document.getElementById('progressText').innerHTML = `📸 ${processed}/${images.length} images zipped... 💕`;
+                
+                await new Promise(resolve => setTimeout(resolve, 10));
+            }
+            
+            document.getElementById('progressText').innerHTML = '✨ Creating final ZIP file... ✨';
+            
+            const content = await zip.generateAsync({ type: 'blob' });
+            const url = URL.createObjectURL(content);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `shoujo_vault_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.zip`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            overlay.remove();
+            alert(`🎉 Successfully created ZIP with ${images.length} images! 🎉\n\nYour download has started! 💕`);
+        }
+        
         // ========== SELECT ENTIRE FOLDER ==========
         function selectFolder() {
             if (!isUnlocked) {
-                alert("Please unlock the vault first!");
+                alert("💕 Please unlock the vault first! 💕");
                 return;
             }
             
@@ -581,7 +772,7 @@
                 const imageFiles = files.filter(f => f.type.startsWith('image/'));
                 
                 if (imageFiles.length === 0) {
-                    alert("No images found in selected folder!");
+                    alert("💔 No images found in selected folder! 💔");
                     return;
                 }
                 
@@ -592,7 +783,7 @@
                 }
                 
                 await refreshGallery();
-                alert(`✅ Imported ${imported} images from folder!`);
+                alert(`🎉 Imported ${imported} images from folder! 🎉\n\nYour collection is growing! 💕`);
             };
             
             input.click();
@@ -601,13 +792,13 @@
         // ========== UPLOAD IMAGES ==========
         async function uploadImages() {
             if (!isUnlocked) {
-                alert("Please unlock the vault first!");
+                alert("💕 Please unlock the vault first! 💕");
                 return;
             }
             
             const files = document.getElementById('fileInput').files;
             if (files.length === 0) {
-                alert("Please select images to upload");
+                alert("💕 Please select images to upload 💕");
                 return;
             }
             
@@ -615,13 +806,13 @@
                 if (file.type.startsWith('image/')) {
                     await saveImageToDB(file);
                 } else {
-                    alert(`Skipping ${file.name} - Not an image file`);
+                    alert(`Skipping ${file.name} - Not an image file 💔`);
                 }
             }
             
             document.getElementById('fileInput').value = '';
             await refreshGallery();
-            alert(`✅ Uploaded ${files.length} images!`);
+            alert(`🌸 Uploaded ${files.length} images successfully! 🌸`);
         }
         
         // ========== SAVE IMAGE TO DATABASE ==========
@@ -664,7 +855,7 @@
         // ========== DELETE IMAGE ==========
         async function deleteImage(id) {
             if (!isUnlocked) return;
-            if (confirm("⚠️ Permanently delete this image?")) {
+            if (confirm("💔 Permanently delete this image? 💔")) {
                 const transaction = db.transaction(['images'], 'readwrite');
                 const store = transaction.objectStore('images');
                 store.delete(id);
@@ -683,7 +874,7 @@
                     const request = store.clear();
                     request.onsuccess = async () => {
                         await refreshGallery();
-                        alert("All images have been deleted.");
+                        alert("All images have been deleted. 💔");
                     };
                 }
             }
@@ -705,11 +896,11 @@
             
             if (images.length === 0) {
                 gallery.innerHTML = `
-                    <div style="text-align: center; padding: 60px; background: rgba(45,45,68,0.5); border-radius: 20px; grid-column: 1/-1;">
-                        <div style="font-size: 3em; margin-bottom: 20px;">📭</div>
-                        <h3>No Images Found</h3>
-                        <p>Click "Scan /images Folder" or upload images to get started</p>
-                        <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.7;">🔒 All images are stored locally on your device</p>
+                    <div style="text-align: center; padding: 60px; background: rgba(255,245,250,0.8); border-radius: 50px; grid-column: 1/-1; border: 3px solid #ffd4e4;">
+                        <div style="font-size: 4em; margin-bottom: 20px;">📭💕</div>
+                        <h3>Your Vault is Empty!</h3>
+                        <p>Click "Scan /images Folder" or upload images to fill it with precious memories 💖</p>
+                        <p style="font-size: 0.85em; margin-top: 10px;">✨ All images are stored locally on your device ✨</p>
                     </div>
                 `;
                 return;
@@ -731,7 +922,7 @@
         function updateStats(count) {
             const stats = document.getElementById('stats');
             const totalSize = currentImages.reduce((sum, img) => sum + img.size, 0);
-            stats.innerHTML = `📊 ${count} image${count !== 1 ? 's' : ''} | Total: ${formatFileSize(totalSize)} | 🔒 Local Storage Only`;
+            stats.innerHTML = `💖 ${count} precious image${count !== 1 ? 's' : ''} | Total: ${formatFileSize(totalSize)} | 🔒 100% Local & Private 💖`;
         }
         
         // ========== SHOW FULL IMAGE ==========
@@ -753,13 +944,13 @@
                 isUnlocked = true;
                 document.getElementById('passwordSection').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
-                document.getElementById('lockStatus').innerHTML = '🔓 UNLOCKED';
-                document.getElementById('lockStatus').style.background = 'linear-gradient(135deg, #48bb78, #38a169)';
+                document.getElementById('lockStatus').innerHTML = '🔓 UNLOCKED 💖';
+                document.getElementById('lockStatus').style.background = 'linear-gradient(135deg, #a8e6cf, #7ec8a0)';
                 
                 await initDB();
                 await refreshGallery();
             } else {
-                alert("❌ Incorrect password!");
+                alert("💔 Incorrect password! Try again sweetie 💔");
                 document.getElementById('passwordInput').value = '';
                 document.getElementById('passwordInput').focus();
             }
@@ -771,8 +962,8 @@
             document.getElementById('passwordSection').style.display = 'block';
             document.getElementById('mainContent').style.display = 'none';
             document.getElementById('passwordInput').value = '';
-            document.getElementById('lockStatus').innerHTML = '🔒 LOCKED';
-            document.getElementById('lockStatus').style.background = '#2d2d44';
+            document.getElementById('lockStatus').innerHTML = '🔒 LOCKED 💔';
+            document.getElementById('lockStatus').style.background = 'linear-gradient(135deg, #ffb7d2, #ff8eb5)';
         }
         
         // ========== HELPER FUNCTIONS ==========
@@ -799,7 +990,7 @@
             return (bytes / 1073741824).toFixed(1) + ' GB';
         }
         
-        // ========== DRAG & DROP SUPPORT ==========
+        // ========== DRAG & DROP ==========
         document.addEventListener('dragover', (e) => {
             e.preventDefault();
         });
@@ -807,7 +998,7 @@
         document.addEventListener('drop', async (e) => {
             e.preventDefault();
             if (!isUnlocked) {
-                alert("Please unlock the vault first!");
+                alert("💕 Please unlock the vault first! 💕");
                 return;
             }
             
@@ -819,24 +1010,21 @@
                     await saveImageToDB(file);
                 }
                 await refreshGallery();
-                alert(`✅ Dropped and imported ${imageFiles.length} images!`);
+                alert(`🎉 Dropped and imported ${imageFiles.length} images! 🎉`);
             }
         });
         
         // ========== KEYBOARD SHORTCUTS ==========
         document.addEventListener('keydown', (e) => {
-            // Ctrl+L to lock
             if (e.ctrlKey && e.key === 'l') {
                 e.preventDefault();
                 if (isUnlocked) lockVault();
             }
-            // ESC to close modal
             if (e.key === 'Escape') {
                 closeModal();
             }
         });
         
-        // Auto-focus on password input
         document.getElementById('passwordInput').focus();
     </script>
 </body>
