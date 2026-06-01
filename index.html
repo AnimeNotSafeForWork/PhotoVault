@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔒 Private Image Vault - NSFW Storage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: slideDown 0.5s ease;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Warning Banner */
+        .warning {
+            background: linear-gradient(135deg, #ff6b6b, #c92a2a);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Password Section */
+        .password-section {
+            background: rgba(45, 45, 68, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px auto;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .password-section h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .password-section input {
+            width: 80%;
+            padding: 15px;
+            margin: 15px 0;
+            background: #1e1e2e;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        .password-section input:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+
+        .password-section button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .password-section button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Controls Bar */
+        .controls {
+            background: rgba(45, 45, 68, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .controls button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .controls button:active {
+            transform: translateY(0);
+        }
+
+        .file-input-label {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .file-input-label:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Image Card */
+        .image-card {
+            background: rgba(45, 45, 68, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .image-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-info {
+            padding: 15px;
+            background: rgba(30, 30, 46, 0.95);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+            gap: 10px;
+        }
+
+        .filename {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #a0a0c0;
+        }
+
+        .file-size {
+            color: #667eea;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .delete-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.85em;
+        }
+
+        .delete-btn:hover {
+            background: #ff6b81;
+            transform: scale(1.05);
+        }
+
+        /* Modal for fullscreen view */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            color: white;
+            font-size: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.1);
+        }
+
+        /* Lock Status Indicator */
+        .lock-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2d2d44;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Stats Bar */
+        .stats {
+            background: rgba(45, 45, 68, 0.7);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #a0a0c0;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2em;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .image-card img {
+                height: 150px;
+            }
+            
+            .controls button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+            
+            .modal-close {
+                top: 20px;
+                right: 20px;
+                font-size: 35px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 Private Image Vault</h1>
+            <p>Your Secure NSFW Image Storage | 100% Local | Zero Cloud Sync</p>
+        </div>
+
+        <div class="warning">
+            ⚠️ NSFW CONTENT - PASSWORD PROTECTED | ALL DATA STAYS ON YOUR DEVICE ⚠️
+        </div>
+
+        <!-- Password Protection -->
+        <div class="password-section" id="passwordSection">
+            <h3>🔐 SECURITY CHECK</h3>
+            <input type="password" id="passwordInput" placeholder="Enter Master Password" autocomplete="off">
+            <br>
+            <button onclick="unlockVault()">Unlock Vault</button>
+            <p style="margin-top: 15px; font-size: 0.85em; opacity: 0.7;">🔒 Your images are encrypted and stored locally</p>
+        </div>
+
+        <!-- Main Content (Hidden until unlock) -->
+        <div id="mainContent" style="display: none;">
+            <div class="controls">
+                <button onclick="scanImagesFolder()" id="scanBtn">📂 Scan /images Folder</button>
+                <label class="file-input-label">
+                    📤 Upload Images
+                    <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/gif,image/webp,image/bmp,image/jpg">
+                </label>
+                <button onclick="selectFolder()">📁 Select Folder</button>
+                <button onclick="refreshGallery()">🔄 Refresh</button>
+                <button onclick="lockVault()">🔒 Lock Vault</button>
+                <button onclick="clearAllImages()" style="background: linear-gradient(135deg, #ff4757, #c92a2a);">⚠️ Delete All</button>
+            </div>
+            
+            <div class="stats" id="stats">
+                Loading images...
+            </div>
+            
+            <div id="gallery" class="gallery">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading your secure gallery...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Modal -->
+    <div id="modal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img id="modalImage" alt="Full size preview">
+    </div>
+
+    <!-- Lock Status Indicator -->
+    <div class="lock-status" id="lockStatus">
+        🔒 LOCKED
+    </div>
+
+    <script>
+        // ========== CONFIGURATION ==========
+        // CHANGE THIS PASSWORD TO SOMETHING SECURE!
+        const MASTER_PASSWORD = "YourSecurePassword123!@#";
+        
+        // ========== GLOBAL VARIABLES ==========
+        let isUnlocked = false;
+        let db = null;
+        let currentImages = [];
+        
+        // ========== INITIALIZE INDEXEDDB ==========
+        function initDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open('PrivateImageVault', 2);
+                
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => {
+                    db = request.result;
+                    resolve(db);
+                };
+                
+                request.onupgradeneeded = (event) => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains('images')) {
+                        const store = db.createObjectStore('images', { keyPath: 'id', autoIncrement: true });
+                        store.createIndex('filename', 'filename', { unique: false });
+                        store.createIndex('uploadDate', 'uploadDate', { unique: false });
+                    }
+                };
+            });
+        }
+        
+        // ========== SCAN /IMAGES FOLDER ==========
+        async function scanImagesFolder() {
+            if (!isUnlocked) {
+                alert("Please unlock the vault first!");
+                return;
+            }
+            
+            const scanBtn = document.getElementById('scanBtn');
+            const originalText = scanBtn.innerHTML;
+            scanBtn.innerHTML = '⏳ Scanning...';
+            scanBtn.disabled = true;
+            
+            try {
+                // Try to fetch directory listing from /images/
+                const response = await fetch('/images/');
+                const html = await response.text();
+                
+                // Parse image files from directory listing
+                const imageExtensions = /\.(jpg|jpeg|png|gif|webp|bmp|svg|ico)$/i;
+                const imgMatches = html.match(/href="([^"]+\.(jpg|jpeg|png|gif|webp|bmp|svg|ico))"/gi);
+                
+                if (!imgMatches) {
+                    alert("No images found in /images folder!\n\nMake sure:\n1. You're running a local server (python -m http.server 8000)\n2. The /images folder exists\n3. Images are in the folder");
+                    return;
+                }
+                
+                let imported = 0;
+                for (let match of imgMatches) {
+                    const filename = match.match(/href="([^"]+)"/)[1];
+                    if (imageExtensions.test(filename)) {
+                        try {
+                            const imgResponse = await fetch(`/images/${filename}`);
+                            const blob = await imgResponse.blob();
+                            const file = new File([blob], filename, { type: blob.type });
+                            await saveImageToDB(file);
+                            imported++;
+                        } catch(e) {
+                            console.error(`Failed to import ${filename}:`, e);
+                        }
+                    }
+                }
+                
+                await refreshGallery();
+                alert(`✅ Successfully imported ${imported} images from /images folder!`);
+                
+            } catch (error) {
+                console.error("Scan error:", error);
+                alert(`❌ Cannot scan /images folder automatically.\n\nTo use this feature:\n1. Run a local server in this directory:\n   python -m http.server 8000\n2. Open http://localhost:8000\n3. Make sure /images folder exists\n\nAlternatively, use "Select Folder" or drag & drop images.`);
+            } finally {
+                scanBtn.innerHTML = originalText;
+                scanBtn.disabled = false;
+            }
+        }
+        
+        // ========== SELECT ENTIRE FOLDER ==========
+        function selectFolder() {
+            if (!isUnlocked) {
+                alert("Please unlock the vault first!");
+                return;
+            }
+            
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.webkitdirectory = true;
+            input.directory = true;
+            input.multiple = true;
+            
+            input.onchange = async (e) => {
+                const files = Array.from(e.target.files);
+                const imageFiles = files.filter(f => f.type.startsWith('image/'));
+                
+                if (imageFiles.length === 0) {
+                    alert("No images found in selected folder!");
+                    return;
+                }
+                
+                let imported = 0;
+                for (let file of imageFiles) {
+                    await saveImageToDB(file);
+                    imported++;
+                }
+                
+                await refreshGallery();
+                alert(`✅ Imported ${imported} images from folder!`);
+            };
+            
+            input.click();
+        }
+        
+        // ========== UPLOAD IMAGES ==========
+        async function uploadImages() {
+            if (!isUnlocked) {
+                alert("Please unlock the vault first!");
+                return;
+            }
+            
+            const files = document.getElementById('fileInput').files;
+            if (files.length === 0) {
+                alert("Please select images to upload");
+                return;
+            }
+            
+            for (let file of files) {
+                if (file.type.startsWith('image/')) {
+                    await saveImageToDB(file);
+                } else {
+                    alert(`Skipping ${file.name} - Not an image file`);
+                }
+            }
+            
+            document.getElementById('fileInput').value = '';
+            await refreshGallery();
+            alert(`✅ Uploaded ${files.length} images!`);
+        }
+        
+        // ========== SAVE IMAGE TO DATABASE ==========
+        function saveImageToDB(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const transaction = db.transaction(['images'], 'readwrite');
+                    const store = transaction.objectStore('images');
+                    
+                    const imageRecord = {
+                        filename: file.name,
+                        type: file.type,
+                        data: event.target.result,
+                        size: file.size,
+                        uploadDate: new Date().toISOString()
+                    };
+                    
+                    const request = store.add(imageRecord);
+                    request.onsuccess = () => resolve();
+                    request.onerror = () => reject(request.error);
+                };
+                reader.onerror = () => reject(reader.error);
+                reader.readAsDataURL(file);
+            });
+        }
+        
+        // ========== GET ALL IMAGES ==========
+        async function getAllImages() {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(['images'], 'readonly');
+                const store = transaction.objectStore('images');
+                const request = store.getAll();
+                
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+        
+        // ========== DELETE IMAGE ==========
+        async function deleteImage(id) {
+            if (!isUnlocked) return;
+            if (confirm("⚠️ Permanently delete this image?")) {
+                const transaction = db.transaction(['images'], 'readwrite');
+                const store = transaction.objectStore('images');
+                store.delete(id);
+                await refreshGallery();
+            }
+        }
+        
+        // ========== CLEAR ALL IMAGES ==========
+        async function clearAllImages() {
+            if (!isUnlocked) return;
+            if (confirm("⚠️⚠️⚠️ WARNING: This will delete ALL images permanently! ⚠️⚠️⚠️\n\nType 'DELETE' to confirm:")) {
+                const confirmation = prompt("Type DELETE to confirm:");
+                if (confirmation === "DELETE") {
+                    const transaction = db.transaction(['images'], 'readwrite');
+                    const store = transaction.objectStore('images');
+                    const request = store.clear();
+                    request.onsuccess = async () => {
+                        await refreshGallery();
+                        alert("All images have been deleted.");
+                    };
+                }
+            }
+        }
+        
+        // ========== REFRESH GALLERY ==========
+        async function refreshGallery() {
+            if (!isUnlocked) return;
+            
+            const images = await getAllImages();
+            currentImages = images;
+            displayGallery(images);
+            updateStats(images.length);
+        }
+        
+        // ========== DISPLAY GALLERY ==========
+        function displayGallery(images) {
+            const gallery = document.getElementById('gallery');
+            
+            if (images.length === 0) {
+                gallery.innerHTML = `
+                    <div style="text-align: center; padding: 60px; background: rgba(45,45,68,0.5); border-radius: 20px; grid-column: 1/-1;">
+                        <div style="font-size: 3em; margin-bottom: 20px;">📭</div>
+                        <h3>No Images Found</h3>
+                        <p>Click "Scan /images Folder" or upload images to get started</p>
+                        <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.7;">🔒 All images are stored locally on your device</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            gallery.innerHTML = images.map(img => `
+                <div class="image-card">
+                    <img src="${img.data}" alt="${escapeHtml(img.filename)}" onclick="showFullImage('${img.data.replace(/'/g, "\\'")}')">
+                    <div class="image-info">
+                        <span class="filename" title="${escapeHtml(img.filename)}">${escapeHtml(truncateFilename(img.filename))}</span>
+                        <span class="file-size">${formatFileSize(img.size)}</span>
+                        <button class="delete-btn" onclick="deleteImage(${img.id})">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // ========== UPDATE STATS ==========
+        function updateStats(count) {
+            const stats = document.getElementById('stats');
+            const totalSize = currentImages.reduce((sum, img) => sum + img.size, 0);
+            stats.innerHTML = `📊 ${count} image${count !== 1 ? 's' : ''} | Total: ${formatFileSize(totalSize)} | 🔒 Local Storage Only`;
+        }
+        
+        // ========== SHOW FULL IMAGE ==========
+        function showFullImage(dataUrl) {
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = dataUrl;
+            modal.style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+        
+        // ========== UNLOCK VAULT ==========
+        async function unlockVault() {
+            const password = document.getElementById('passwordInput').value;
+            if (password === MASTER_PASSWORD) {
+                isUnlocked = true;
+                document.getElementById('passwordSection').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                document.getElementById('lockStatus').innerHTML = '🔓 UNLOCKED';
+                document.getElementById('lockStatus').style.background = 'linear-gradient(135deg, #48bb78, #38a169)';
+                
+                await initDB();
+                await refreshGallery();
+            } else {
+                alert("❌ Incorrect password!");
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
+        
+        // ========== LOCK VAULT ==========
+        function lockVault() {
+            isUnlocked = false;
+            document.getElementById('passwordSection').style.display = 'block';
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('lockStatus').innerHTML = '🔒 LOCKED';
+            document.getElementById('lockStatus').style.background = '#2d2d44';
+        }
+        
+        // ========== HELPER FUNCTIONS ==========
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+        
+        function truncateFilename(filename, maxLen = 25) {
+            if (filename.length <= maxLen) return filename;
+            const ext = filename.split('.').pop();
+            const name = filename.substring(0, maxLen - 3 - ext.length);
+            return `${name}...${ext}`;
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            if (bytes < 1073741824) return (bytes / 1048576).toFixed(1) + ' MB';
+            return (bytes / 1073741824).toFixed(1) + ' GB';
+        }
+        
+        // ========== DRAG & DROP SUPPORT ==========
+        document.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('drop', async (e) => {
+            e.preventDefault();
+            if (!isUnlocked) {
+                alert("Please unlock the vault first!");
+                return;
+            }
+            
+            const files = Array.from(e.dataTransfer.files);
+            const imageFiles = files.filter(f => f.type.startsWith('image/'));
+            
+            if (imageFiles.length > 0) {
+                for (let file of imageFiles) {
+                    await saveImageToDB(file);
+                }
+                await refreshGallery();
+                alert(`✅ Dropped and imported ${imageFiles.length} images!`);
+            }
+        });
+        
+        // ========== KEYBOARD SHORTCUTS ==========
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+L to lock
+            if (e.ctrlKey && e.key === 'l') {
+                e.preventDefault();
+                if (isUnlocked) lockVault();
+            }
+            // ESC to close modal
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Auto-focus on password input
+        document.getElementById('passwordInput').focus();
+    </script>
+</body>
+</html>
